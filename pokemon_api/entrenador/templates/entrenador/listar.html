@@ -1,0 +1,29 @@
+ {%  extends 'entrenador/base.html' %}   
+
+ {% block principal %}
+    <table class="table">
+        <thead>
+            <th>Nick</th>
+            <th>Nombre</th>
+            <th>Region</th>
+            <th>Medallas</th>
+            <th>Batallas</th>
+            <th>Fecha Ingreso</th>
+
+        </thead>
+        <tbody>
+            {% for entrenador in entrenadores %}
+                <tr>
+                    <td>{{entrenador.nick}}</td>
+                    <td>{{entrenador.nombre}}</td>
+                    <td>{{entrenador.region}}</td>
+                    <td>{{entrenador.medallas}}</td>
+                    <td>{{entrenador.batallas}}</td>
+                    <td>{{entrenador.fechaRegistro}}</td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}
