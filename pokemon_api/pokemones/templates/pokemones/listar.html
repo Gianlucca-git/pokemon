@@ -10,7 +10,7 @@
         <tbody>
             {% for pokemon in pokemones %}
                 <tr>
-                    <td align="center"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"></td>
+                    <td align="center"><img src="{{pokemon.icono}}"></td>
                     <td align="center">{{pokemon.nombre}}</td>
                     <td align="center">{{pokemon.tipo}}</td>
                 </tr>
