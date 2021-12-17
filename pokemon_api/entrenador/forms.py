@@ -4,6 +4,7 @@ from django.forms import ModelForm
 from django import forms
 from .models import Entrenador 
 
+
 class EntrenadorForm(ModelForm):
 
     class Meta:

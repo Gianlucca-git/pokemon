@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models.fields import BooleanField, CharField, DateField, IntegerField
 from datetime import datetime
 from django.utils import timezone
+
 # Cada clase es una tabla :3 luego registrarlo en el admin
 
 class Entrenador(models.Model):  
