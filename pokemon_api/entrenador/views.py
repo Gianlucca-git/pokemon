@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from entrenador.service import get_pokemon_list
 from .models import Entrenador , EntrenadorPokemones
 from .forms import EntrenadorForm
 from django.shortcuts import  render, redirect
