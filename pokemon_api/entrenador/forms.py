@@ -12,9 +12,10 @@ class EntrenadorForm(ModelForm):
         fields = '__all__'
         labels = {
     'nick' : 'Entrenador',
-    'nombreCompleto' : 'Nombre',
+    'password' : 'Nombre',
     'region' : 'Region' ,
     'medallas' : 'Medallas' ,
     'batallas' : 'Batallas' ,
-    'fechaRegistro' : 'Fecha de Inicio' 
+    'fechaRegistro' : 'Fecha de Inicio',
+    'numeroPokemones': 'Pokemones'
         }

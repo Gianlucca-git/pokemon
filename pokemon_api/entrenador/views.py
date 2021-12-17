@@ -17,3 +17,18 @@ def listarPokemones(r, id):
         "pokemones" : pokemones
       }
     return render(r, "entrenador/listar_pokemones.html", context)
+
+def crear(r):
+
+    formulario =  EntrenadorForm()
+    context = {
+        "formulario" :formulario,
+    }
+
+    if r.POST:
+        formulario = EntrenadorForm(r.POST)
+        formulario.save()
+
+        return redirect("listar")
+
+    return render(r, "entrenador/register.html", context)
