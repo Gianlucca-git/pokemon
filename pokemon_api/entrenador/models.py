@@ -4,7 +4,7 @@ from datetime import datetime
 from django.utils import timezone
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-from pokemones.models import Pokemones
+from pokemones.models import *
 
 # Cada clase es una tabla :3 luego registrarlo en el admin
 
@@ -20,13 +20,22 @@ class Entrenador(models.Model):
     def __str__(self):
         return self.nick
 
-class EntrenadorPokemones (models.Model): ## PREGUNTAR
-
-    class Meta:
-        unique_together = (('entrenador', 'pokemones'),)
-
-    entrenador = models.ForeignKey(Entrenador, on_delete=models.CASCADE)
-    pokemones = models.ForeignKey(Pokemones, on_delete=models.CASCADE)
+class Artificial(models.Model):  
+    nombre = CharField (max_length=100, unique=True)
+    region = CharField (max_length=100)
+    dificultad = PositiveSmallIntegerField (default=1)
+    imagen = CharField(max_length=10000)
 
     def __str__(self):
-        return self.entrenador.nick + " / " + self.pokemones.nombre
+        return self.nombre
+
+class EntrenadorArticialPokemones (models.Model): ## PREGUNTAR
+
+    class Meta:
+        unique_together = (('entrenador', 'pokemon'),)
+
+    entrenador = models.ForeignKey(Artificial, on_delete=models.CASCADE)
+    pokemon = models.ForeignKey(PokemonesDefault, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.entrenador.nombre + " / " + self.pokemon.nombre

@@ -1,6 +1,13 @@
  {%  extends 'entrenador/base.html' %}   
 
  {% block principal %}
+    <center>
+        <h4>Entrenadores del Mundo</h4>
+    </center>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-10">
+
     <table class="table">
         <thead>
             <th class="not_mapped_style" style="text-align:center">Nick</th>
@@ -10,8 +17,6 @@
             <th class="not_mapped_style" style="text-align:center">Batallas</th>
             <th class="not_mapped_style" style="text-align:center">Fecha Registro</th>
             <th class="not_mapped_style" style="text-align:center">Pokemones</th>
-            <th class="not_mapped_style" style="text-align:center">Alterna</th>
-
         </thead>
         <tbody>
             {% for entrenador in entrenadores %}
@@ -24,10 +29,6 @@
                     <td align="center">{{entrenador.fechaRegistro}}</td>
                     <td align="center">
                         <a href="{% url 'listar_pokemones' nick=entrenador.nick %}">Ver</a>
-
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'listar_pokemones_alterno' id=entrenador.id %}">Ver_Alterno</a>
 
                     </td>
                 </tr>

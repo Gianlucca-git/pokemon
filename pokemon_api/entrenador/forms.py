@@ -2,7 +2,9 @@ from django.db import models
 from django.db.models import fields
 from django.forms import ModelForm
 from django import forms
-from .models import Entrenador, EntrenadorPokemones 
+
+from preguntas.models import Preguntas
+from .models import Entrenador, EntrenadorArticialPokemones 
 
 
 class EntrenadorForm(ModelForm):
@@ -17,14 +19,14 @@ class EntrenadorForm(ModelForm):
     'password' : 'Contraseña'
         }
 
-class EntrenadorPokemonesForm(ModelForm):
+class EntrenadorArticialPokemonesForm(ModelForm):
 
     class Meta:
-        model = EntrenadorPokemones
+        model = EntrenadorArticialPokemones
         fields = '__all__'
         labels = {
             'entrenador':'Entrenador',
-            'pokemones':'Pokemon'
+            'pokemon':'Pokemon'
         }
 
 class LoginForm(ModelForm):
@@ -35,4 +37,13 @@ class LoginForm(ModelForm):
         labels = {
     'nick' : 'Entrenador',
     'password' : 'Contraseña'
+        }
+
+class BatallaForm(ModelForm):
+
+    class Meta:
+        model = Preguntas
+        exclude = ['pregunta','respuestaIncorrecta1','respuestaIncorrecta2']
+        labels = {
+    'respuestaCorrecta' : 'Contestar'
         }

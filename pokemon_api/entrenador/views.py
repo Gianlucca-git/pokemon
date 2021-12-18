@@ -1,7 +1,7 @@
 from django.shortcuts import render
-
 from entrenador.service import *
-from .models import Entrenador , EntrenadorPokemones
+from preguntas.models import Preguntas
+from .models import *
 from .forms import *
 from django.shortcuts import  render, redirect
 from random import randrange
@@ -25,7 +25,6 @@ def login(r):
             miEntrenador=Entrenador.objects.get(nick=formulario['nick'].value()) 
             try:
                 pokemones = Pokemones.objects.filter(entrenador=formulario['nick'].value())
-                print( pokemones )
                 context = {  
                     "pokemones" : pokemones
                 }
@@ -42,6 +41,13 @@ def listar(r):
         "entrenadores": Entrenador.objects.all()
     }
     return render(r, "entrenador/listar.html", context)
+
+def listarArtificiales(r):
+    context = {
+        "user": "gian-1", 
+        "entrenadores": Artificial.objects.all()
+    }
+    return render(r, "entrenador/listar_artificiales.html", context)
 
 def crear(r):
 
@@ -147,14 +153,67 @@ def listarPokemones(r, nick):
       }
     return render(r, "entrenador/listar_pokemones.html", context)
 
-def listarPokemonesAlterno(r, id):
-    entrenador = Entrenador.objects.get(pk=id)
-    pokemones = EntrenadorPokemones.objects.filter(entrenador=entrenador) ##regresa el join con la tabla asignatura
+def listarPokemonesDefault(r, id):
+    entrenador = Artificial.objects.get(pk=id)
+    pokemones = EntrenadorArticialPokemones.objects.filter(entrenador=entrenador) ##regresa el join con la tabla asignatura
     
     context = {  
         "pokemones" : pokemones
       }
     return render(r, "entrenador/listar_pokemones_alterno.html", context)
+
+def batalla(r, nick, id, vida):
+
+    if int(vida) < 0 :
+        return redirect(listar)
+
+    preguntas = Preguntas.objects.all()
+    artificial = Artificial.objects.get(pk=id) 
+    formulario= BatallaForm()
+    
+    ## Revolver las Respuestas -----------------
+    i=0  
+    preguntasLimitadas=[]
+    while i< 10:
+        numberRamdon = randrange(1)
+        if numberRamdon == 0:
+            preguntasRamdon = Preguntas( pregunta=preguntas[i].pregunta,
+                                         respuestaCorrecta=preguntas[i].respuestaIncorrecta1, 
+                                         respuestaIncorrecta1=preguntas[i].respuestaCorrecta, 
+                                         respuestaIncorrecta2= preguntas[i].respuestaIncorrecta2)
+        elif numberRamdon == 1:
+            preguntasRamdon = Preguntas( pregunta=preguntas[i].pregunta,
+                                         respuestaCorrecta=preguntas[i].respuestaIncorrecta1, 
+                                         respuestaIncorrecta1=preguntas[i].respuestaIncorrecta2, 
+                                         respuestaIncorrecta2= preguntas[i].respuestaCorrecta)     
+        else:
+            preguntasRamdon= preguntas[i]
+
+        preguntasLimitadas.append(preguntasRamdon)
+        i+=1     
+
+    ## Fin Revolver las Respuestas -----------------
+    context = {  
+        "user": nick,
+        "artificial": artificial,
+        "vida" : vida,
+        "preguntasLimitadas": preguntasLimitadas,
+        "formulario" : formulario
+      }
+
+    if r.POST: ## No funciona :(
+        print("ENTRE VIDA")
+        resp = r.POST['respuesta']
+        print(resp)
+
+        vida = int(vida)
+        vida = vida-10
+        
+
+        return batalla(r, nick, id, str(vida))
+
+    return render(r, "entrenador/batalla.html", context)
+
 
 class Entrenador_APIView(APIView):
     def get_object(self, pk):

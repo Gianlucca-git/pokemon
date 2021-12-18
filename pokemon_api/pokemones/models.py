@@ -18,3 +18,19 @@ class Pokemones(models.Model):
 
     def __str__(self):
         return self.nombre
+
+class PokemonesDefault(models.Model):  
+    nombre = CharField (max_length=100,null= False)
+    tipo = CharField (max_length=100,null= False)
+    icono = CharField (max_length=100,default='') ## sprites.front_default
+    imagen = CharField (max_length=100,default='') ## sprites.other.dream_world.front_default
+
+    moviminetoUno = CharField(max_length=200,default='Generico=25')
+    moviminetoDos = CharField(max_length=200,default='Generico=25')
+    moviminetoTres = CharField(max_length=200,default='Generico=25')
+    moviminetoCuatro  = CharField(max_length=200,default='Generico=25')
+
+    entrenador = CharField(max_length=200, null= True)
+
+    def __str__(self):
+        return self.nombre
