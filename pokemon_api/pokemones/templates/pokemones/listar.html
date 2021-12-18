@@ -1,11 +1,20 @@
  {%  extends 'entrenador/base.html' %}   
 
  {% block principal %}
+
+    <center>
+        <h4>Pokemones del Mundo</h4>
+    </center>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-10">
+
     <table class="table">
         <thead>
             <th class="not_mapped_style" style="text-align:center">Pokemon</th>
-            <th class="not_mapped_style" style="text-align:center">Nombre</th>
+            <th class="not_mapped_style" style="text-align:center">Nombre / Entrenador</th>
             <th class="not_mapped_style" style="text-align:center">Tipo</th>
+            <th class="not_mapped_style" style="text-align:center">Ataques</th>
         </thead>
         <tbody>
             {% for pokemon in pokemones %}
@@ -13,6 +22,7 @@
                     <td align="center"><img src="{{pokemon.icono}}"></td>
                     <td align="center">{{pokemon.nombre}}</td>
                     <td align="center">{{pokemon.tipo}}</td>
+                    <td align="center">{{pokemon.moviminetoUno}} | {{pokemon.moviminetoDos}} | {{pokemon.moviminetoTres}} | {{pokemon.moviminetoCuatro}}</td>
                 </tr>
             {% endfor %}
         </tbody>

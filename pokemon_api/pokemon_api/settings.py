@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'entrenador.apps.EntrenadorConfig',
     'pokemones.apps.PokemonesConfig',
+    'preguntas.apps.PreguntasConfig',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

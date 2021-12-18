@@ -1,27 +1,34 @@
  {%  extends 'entrenador/base.html' %}   
 
  {% block principal %}
+    <center>
+        <h4>Entrenadores del Mundo</h4>
+    </center>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-10">
+
     <table class="table">
         <thead>
-            <th>Nick</th>
-            <th>Nombre</th>
-            <th>Region</th>
-            <th>Medallas</th>
-            <th>Batallas</th>
-            <th>Fecha Ingreso</th>
-            <th>Pokemones</th>
+            <th class="not_mapped_style" style="text-align:center">Nick</th>
+            <th class="not_mapped_style" style="text-align:center">Nombre</th>
+            <th class="not_mapped_style" style="text-align:center">Region</th>
+            <th class="not_mapped_style" style="text-align:center">Medallas</th>
+            <th class="not_mapped_style" style="text-align:center">Batallas</th>
+            <th class="not_mapped_style" style="text-align:center">Fecha Registro</th>
+            <th class="not_mapped_style" style="text-align:center">Pokemones</th>
         </thead>
         <tbody>
             {% for entrenador in entrenadores %}
                 <tr>
-                    <td>{{entrenador.nick}}</td>
-                    <td>{{entrenador.nombre}}</td>
-                    <td>{{entrenador.region}}</td>
-                    <td>{{entrenador.medallas}}</td>
-                    <td>{{entrenador.batallas}}</td>
-                    <td>{{entrenador.fechaRegistro}}</td>
-                    <td>
-                        <a href="{% url 'listar_pokemones' id=entrenador.id %}">Pokemones</a>
+                    <td align="center">{{entrenador.nick}}</td>
+                    <td align="center">{{entrenador.nombre}}</td>
+                    <td align="center">{{entrenador.region}}</td>
+                    <td align="center">{{entrenador.medallas}}</td>
+                    <td align="center">{{entrenador.batallas}}</td>
+                    <td align="center">{{entrenador.fechaRegistro}}</td>
+                    <td align="center">
+                        <a href="{% url 'listar_pokemones' nick=entrenador.nick %}">Ver</a>
 
                     </td>
                 </tr>
