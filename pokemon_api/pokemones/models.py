@@ -9,5 +9,6 @@ class Pokemones(models.Model):
     icono = CharField (max_length=100,default='') ## sprites.front_default
     imagen = CharField (max_length=100,default='') ## sprites.other.dream_world.front_default
 
+    moviminetoUno = CharField
     def __str__(self):
         return self.nombre
