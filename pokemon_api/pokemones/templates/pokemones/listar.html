@@ -6,6 +6,7 @@
             <th class="not_mapped_style" style="text-align:center">Pokemon</th>
             <th class="not_mapped_style" style="text-align:center">Nombre</th>
             <th class="not_mapped_style" style="text-align:center">Tipo</th>
+            <th class="not_mapped_style" style="text-align:center">Ataques</th>
         </thead>
         <tbody>
             {% for pokemon in pokemones %}
@@ -13,6 +14,7 @@
                     <td align="center"><img src="{{pokemon.icono}}"></td>
                     <td align="center">{{pokemon.nombre}}</td>
                     <td align="center">{{pokemon.tipo}}</td>
+                    <td align="center">{{pokemon.moviminetoUno}} | {{pokemon.moviminetoDos}} | {{pokemon.moviminetoTres}} | {{pokemon.moviminetoCuatro}}</td>
                 </tr>
             {% endfor %}
         </tbody>

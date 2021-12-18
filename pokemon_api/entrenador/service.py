@@ -23,22 +23,23 @@ def get_pokemon_list(params={}):
 
 def get_pokemon_data(pokemonName):
     response = generate_request('https://pokeapi.co/api/v2/pokemon/' + pokemonName)
-    
     pokemonListName = []
     if response:
         pokemonListName = response.get('moves')
     else:
         return pokemonListName
 
+    if len(pokemonListName)==0:
+        return pokemonListName
     pokemonUrlMoves= []
     i=0
     listRamdons=[]
     while i<4:
-        
-        intRamdon= randrange(len(pokemonListName)-1)
+
+        intRamdon= randrange(len(pokemonListName))
         if intRamdon in listRamdons:
             continue
-        
+
         listRamdons.append(intRamdon)
         pokemonUrlMoves.append(pokemonListName[listRamdons[i]].get('move').get('url'))
         
@@ -55,10 +56,10 @@ def get_moves_data(url):
         danio  = response.get('accuracy')
 
         if danio is not None :
-            return [nombre,danio]
+            return nombre+"="+str(danio)
         else:
-            return [nombre,'25']
+            return nombre+'25'
     
-    return ['Generico','25']
+    return 'Generico=25'
 
     
