@@ -14,6 +14,29 @@ from .serializer import EntrenadorSerializer
 from rest_framework import status
 from django.http import Http404
 
+def login(r):
+    formulario =  LoginForm(r.POST)
+    context = {
+         "formulario" :formulario,
+    }
+    if r.POST:
+        formulario = LoginForm(r.POST)
+        try:
+            miEntrenador=Entrenador.objects.get(nick=formulario['nick'].value()) 
+            try:
+                pokemones = Pokemones.objects.filter(entrenador=formulario['nick'].value())
+                print( pokemones )
+                context = {  
+                    "pokemones" : pokemones
+                }
+                if miEntrenador.password == formulario['password'].value():
+                    return render(r, "entrenador/listar_pokemones.html", context)
+            except:
+                return render(r, "entrenador/login.html", context)
+        except:
+            return render(r, "entrenador/login.html", context)
+    return render(r, "entrenador/login.html", context)
+
 def listar(r):
     context = {
         "entrenadores": Entrenador.objects.all()
@@ -55,7 +78,7 @@ def crear(r):
 
             entrenadorPokemones.save()'''
 
-        return render(r, "entrenador/register.html", context)
+        return redirect ("login")
 
     return render(r, "entrenador/register.html", context)
 

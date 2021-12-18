@@ -26,3 +26,13 @@ class EntrenadorPokemonesForm(ModelForm):
             'entrenador':'Entrenador',
             'pokemones':'Pokemon'
         }
+
+class LoginForm(ModelForm):
+
+    class Meta:
+        model = Entrenador
+        exclude = ['medallas','batallas','fechaRegistro', 'nombre', 'region', 'numeroPokemones']
+        labels = {
+    'nick' : 'Entrenador',
+    'password' : 'Contraseña'
+        }
