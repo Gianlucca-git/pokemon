@@ -49,7 +49,7 @@ def crear(r):
 
             entrenadorPokemones.save()'''
 
-        return render(r, "entrenador/crear.html", context)
+        return render(r, "entrenador/register.html", context)
 
     return render(r, "entrenador/register.html", context)
 

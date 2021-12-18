@@ -59,7 +59,7 @@ def get_moves_data(url):
         if danio is not None :
             return nombre+"="+str(danio)
         else:
-            return nombre+'25'
+            return nombre+"="+'25'
     
     return 'Generico=25'
 
