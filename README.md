@@ -13,3 +13,7 @@ Password: gianlucca
 
     Info de un pokemon - https://jsonformatter.org/3ad346
     Movimiento de un pokemon X  - https://jsonformatter.org/502862
+
+## INSTALLER
+
+pip install djangorestframework
