@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 import requests
 from random import randrange
 
@@ -61,5 +62,26 @@ def get_moves_data(url):
             return nombre+'25'
     
     return 'Generico=25'
+
+def get_tipo_e_imagenes(pokemonName):
+    response = generate_request('https://pokeapi.co/api/v2/pokemon/' + pokemonName)
+
+    icono_ = ""
+    imagen_ = ""
+    tipo_ = ""
+    if response:
+
+        icono_ = response.get('sprites').get('front_default')
+        imagen_  = response.get('sprites').get('other').get('front_default')
+        tipo_ = response.get('types')[0].get('type').get('name')
+        
+        if icono_ is  None :
+            icono_ = ""
+        if imagen_ is  None :
+            imagen_ = ""
+        if tipo_ is  None :
+            tipo_ = ""
+    
+    return {'icono':icono_,'imagen':imagen_,'tipo':tipo_}
 
     

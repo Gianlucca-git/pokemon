@@ -15,13 +15,12 @@ class Entrenador(models.Model):
     region = CharField (max_length=100)
     medallas = PositiveSmallIntegerField (default=0)
     batallas = PositiveSmallIntegerField (default=0)
-    fechaRegistro = DateField (default=timezone.now)
-    numeroPokemones = IntegerField (default=0, validators=[ MaxValueValidator(5), MinValueValidator(0) ]) 
+    fechaRegistro = CharField(max_length=100, default='') ##DateField (default=timezone.now)
 
     def __str__(self):
-        return self.nick ## + ' / ' +  self.nombre
+        return self.nick
 
-class EntrenadorPokemones (models.Model):
+class EntrenadorPokemones (models.Model): ## PREGUNTAR
 
     class Meta:
         unique_together = (('entrenador', 'pokemones'),)
